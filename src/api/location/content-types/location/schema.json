@@ -17,12 +17,6 @@
       "unique": true,
       "required": true
     },
-    "client": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::client.client",
-      "inversedBy": "locations"
-    },
     "name_kana": {
       "type": "string",
       "unique": true,
