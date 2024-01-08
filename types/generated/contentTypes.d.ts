@@ -836,6 +836,41 @@ export interface ApiClientClient extends Schema.CollectionType {
   };
 }
 
+export interface ApiCustomerCustomer extends Schema.CollectionType {
+  collectionName: 'customers';
+  info: {
+    singularName: 'customer';
+    pluralName: 'customers';
+    displayName: 'Customer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    locations: Attribute.Relation<
+      'api::customer.customer',
+      'oneToMany',
+      'api::location.location'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLocationLocation extends Schema.CollectionType {
   collectionName: 'locations';
   info: {
@@ -859,6 +894,11 @@ export interface ApiLocationLocation extends Schema.CollectionType {
     zip_code: Attribute.String & Attribute.Required & Attribute.Unique;
     address: Attribute.String;
     phone: Attribute.String;
+    customer: Attribute.Relation<
+      'api::location.location',
+      'manyToOne',
+      'api::customer.customer'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -897,6 +937,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::article.article': ApiArticleArticle;
       'api::client.client': ApiClientClient;
+      'api::customer.customer': ApiCustomerCustomer;
       'api::location.location': ApiLocationLocation;
     }
   }
