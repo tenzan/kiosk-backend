@@ -19,9 +19,9 @@
     },
     "client": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::client.client",
-      "inversedBy": "location"
+      "inversedBy": "locations"
     },
     "name_kana": {
       "type": "string",

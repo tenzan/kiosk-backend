@@ -818,11 +818,6 @@ export interface ApiClientClient extends Schema.CollectionType {
       'oneToMany',
       'api::location.location'
     >;
-    location: Attribute.Relation<
-      'api::client.client',
-      'oneToOne',
-      'api::location.location'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -856,7 +851,7 @@ export interface ApiLocationLocation extends Schema.CollectionType {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
     client: Attribute.Relation<
       'api::location.location',
-      'oneToOne',
+      'manyToOne',
       'api::client.client'
     >;
     name_kana: Attribute.String & Attribute.Unique;
