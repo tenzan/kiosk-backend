@@ -16,6 +16,7 @@
     "@strapi/plugin-users-permissions": "4.16.2",
     "@strapi/provider-email-mailgun": "^4.16.2",
     "@strapi/strapi": "4.16.2",
+    "dotenv": "^16.3.1",
     "pg": "^8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
